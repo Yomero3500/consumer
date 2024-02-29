@@ -8,11 +8,11 @@ async function getEvent() {
     const conn = await amqp.connect(url);
     const channel = await conn.createChannel();
 
-    const exchange = 'clients.ex';
+    const exchange = 'Maikol';
 
     await channel.assertExchange(exchange, 'direct', {durable: true});
 
-    const queueName = 'clients';
+    const queueName = 'initial';
     const queue = await channel.assertQueue(queueName, {exclusive: false});
     await channel.bindQueue(queue.queue, exchange, '');
 
@@ -23,9 +23,8 @@ async function getEvent() {
             console.log(`Message received: ${mensaje.content.toString()}`);
             try {
                 const id = Number(mensaje.content);
-                const response = await axios.post('https://api-hexagonal-2.onrender.com/registrations',{id_client:id, content:"Registrado"});
-                // console.log("API response: ", response.data);
-                
+                const response = await axios.post('',{});
+    
             } catch (error) {
                 console.log("Error sending to API");   
             }
