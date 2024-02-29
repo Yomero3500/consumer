@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 async function getEvent() {
-    const url = process.env.URL ?? "";
+    const url = process.env.URL || "amqp://michi:michi123@52.205.249.137";
     const conn = await amqp.connect(url);
     const channel = await conn.createChannel();
 
