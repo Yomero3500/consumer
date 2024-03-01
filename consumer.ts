@@ -23,7 +23,7 @@ async function getEvent() {
             console.log(`Message received: ${mensaje.content.toString()}`);
             try {
                 const id = Number(mensaje.content);
-                const response = await axios.post('https://hexagonal-2.onrender.com',{id});
+                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id});
                 console.log(response);
             } catch (error) {
                 console.log("Error sending to API");   
