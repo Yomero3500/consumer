@@ -20,10 +20,10 @@ async function getEvent() {
 
     channel.consume(queue.queue, async(mensaje)=>{
         if(mensaje !== null){
-            console.log(`Message received: ${mensaje.content.toString()}`);
+            console.log(`Message received: ${mensaje}`);
             try {
                 const id = Number(mensaje.content);
-                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id});
+                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{mensaje});
                 console.log(response);
             } catch (error) {
                 console.log("Error sending to API");   
