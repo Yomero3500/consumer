@@ -19,7 +19,7 @@ async function getEvent() {
     console.log('Listening events of RabbitMQ');
 
     channel.consume(queue.queue, async (mensaje) => {
-        console.log(mensaje);
+        console.log(Buffer.bind(mensaje));
         
         if (mensaje !== null) {
             const id = JSON.parse(mensaje.content.toString());
