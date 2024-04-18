@@ -26,7 +26,7 @@ async function getEvent() {
                 const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{mensaje});
                 console.log(response);
             } catch (error) {
-                console.log("Error sending to API");   
+                console.log("Error sending to API", error);   
             }
         }
     }, {noAck:true});
