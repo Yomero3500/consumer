@@ -14,7 +14,7 @@ async function getEvent() {
 
     const queueName = 'initial';
     const queue = await channel.assertQueue(queueName, {exclusive: false});
-    await channel.bindQueue(queue.queue, exchange, '');
+    await channel.bindQueue(queue.queue, exchange, '12345');
 
     console.log('Listening events of RabbitMQ');
 
