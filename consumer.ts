@@ -21,14 +21,11 @@ async function getEvent() {
     channel.consume(queue.queue, async(mensaje)=>{
         if(mensaje !== null){
             console.log(`Message received: ${mensaje.content}`);
-            console.log(JSON.stringify(mensaje.content));
+            console.log(JSON.stringify(mensaje));
             
             try {
                 const id : any= mensaje.content;
-                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id_venta: id});
-                console.log(id);
-                console.log(response);
-                
+                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id_venta: id});                
             } catch (error) {
                 console.log(error);   
             }
