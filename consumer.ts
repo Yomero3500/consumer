@@ -8,7 +8,7 @@ async function getEvent() {
     const conn = await amqp.connect(url);
     const channel = await conn.createChannel();
 
-    const exchange = 'Maikol';
+    const exchange = 'Prueba';
 
     await channel.assertExchange(exchange, 'direct', { durable: true });
 
