@@ -20,7 +20,8 @@ async function getEvent() {
 
     channel.consume(queue.queue, async (mensaje) => {
         if (mensaje !== null) {
-            const id = mensaje.content;
+            const id =JSON.parse(mensaje.content.toString());
+            const idMmalon = parseInt(id)
             console.log(`Message received: ${id}`);
             try {
                 const response = await axios.post('https://hexagonal-2.onrender.com/registrations', { id_venta: id });
