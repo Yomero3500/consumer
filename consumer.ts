@@ -10,17 +10,19 @@ async function getEvent() {
 
     const exchange = 'Maikol';
 
-    await channel.assertExchange(exchange, 'direct', {durable: true});
+    await channel.assertExchange(exchange, 'direct', { durable: true });
 
     const queueName = 'initial';
-    const queue = await channel.assertQueue(queueName, {exclusive: false});
+    const queue = await channel.assertQueue(queueName, { exclusive: false });
     await channel.bindQueue(queue.queue, exchange, '12345');
 
     console.log('Listening events of RabbitMQ');
 
     channel.consume(queue.queue, async (mensaje) => {
+        console.log(mensaje);
+        
         if (mensaje !== null) {
-            const id =JSON.parse(mensaje.content.toString());
+            const id = JSON.parse(mensaje.content.toString());
             const idMmalon = parseInt(id)
             console.log(`Message received: ${id}`);
             try {
@@ -30,6 +32,7 @@ async function getEvent() {
             }
         }
     }, { noAck: true });
-    
+
 }
-getEvent().catch(console.error);
+getEvent().then((res) => console.log(res)
+).catch(console.error);
