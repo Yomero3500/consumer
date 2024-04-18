@@ -18,17 +18,16 @@ async function getEvent() {
 
     console.log('Listening events of RabbitMQ');
 
-    channel.consume(queue.queue, async(mensaje)=>{
-        if(mensaje !== null){
-            console.log(`Message received: ${mensaje}`);
-            console.log(mensaje.content.toString());
+    channel.consume(queue.queue, async (mensaje) => {
+        if (mensaje !== null) {
+            const id = mensaje.content.toString();
+            console.log(`Message received: ${id}`);
             try {
-                const id = mensaje.content.toString();
-                const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id_venta: id});                
+                const response = await axios.post('https://hexagonal-2.onrender.com/registrations', { id_venta: id });
             } catch (error) {
-                console.log(error);   
+                console.log(error);
             }
         }
-    }, {noAck:true});
+    }, { noAck: true });
 }
 getEvent().catch(console.error);
