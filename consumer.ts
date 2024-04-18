@@ -23,7 +23,7 @@ async function getEvent() {
             console.log(`Message received: ${mensaje}`);
             console.log(mensaje.content.toJSON().data);
             try {
-                const id = mensaje;
+                const id = mensaje.content.toJSON().data;
                 const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id_venta: id});                
             } catch (error) {
                 console.log(error);   
