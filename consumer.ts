@@ -22,7 +22,7 @@ async function getEvent() {
         if(mensaje !== null){
             console.log(`Message received: ${mensaje.content}`);
             try {
-                const id = Number(mensaje.content);
+                const id = Number(mensaje.content.toString());
                 const response = await axios.post('https://hexagonal-2.onrender.com/registrations',{id_venta: id});
                 console.log(id);
                 console.log(response.data);
