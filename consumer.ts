@@ -20,8 +20,12 @@ async function getEvent() {
 
     channel.consume(queue.queue, async (mensaje) => {
         console.log(mensaje);
-        
+
         if (mensaje !== null) {
+            const contenido = mensaje.content.toString();
+            console.log(`Contenido recibido: ${contenido}`);
+            const objeto = JSON.parse(contenido);
+            console.log(objeto);
             const id = JSON.parse(mensaje.content.toString());
             const idMmalon = parseInt(id)
             console.log(`Message received: ${id}`);
