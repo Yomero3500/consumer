@@ -20,8 +20,8 @@ async function getEvent() {
 
     channel.consume(queue.queue, async(mensaje)=>{
         if(mensaje !== null){
-            console.log(`Message received: ${mensaje.content.toString()}`);
-            console.log(mensaje.content.buffer.toString());
+            console.log(`Message received: ${mensaje.content}`);
+            console.log(JSON.stringify(mensaje.content));
             
             try {
                 const id : any= mensaje.content;
